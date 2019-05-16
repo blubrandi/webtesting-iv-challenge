@@ -17,6 +17,10 @@ function findBy(filter) {
     return db('music').where(filter);
 }
 
+function findById(id) {
+    return db('music').where(id);
+}
+
 async function add(song) {
     const [id] = await db('music').insert(song);
 

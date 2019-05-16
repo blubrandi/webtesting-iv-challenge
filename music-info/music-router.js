@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const Songs = require('./music.js');
 
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
     Songs.find()
         .then(songs => {
             res.json(songs);
