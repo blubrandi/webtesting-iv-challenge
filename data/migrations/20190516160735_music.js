@@ -1,8 +1,14 @@
+exports.up = function (knex, Promise) {
+    return knex.schema.createTable('music', tbl => {
+        tbl.increments()
 
-// exports.up = function(knex, Promise) {
+        tbl.string('songName', 255).notNullable()
+        tbl.string('artistName', 255).notNullable()
+        tbl.string('songNotes', 528)
+    })
+}
 
-// };
-
-// exports.down = function(knex, Promise) {
-
-// };
+exports.down = function (knex, Promise) {
+    // undo the operation in up
+    return knex.schema.dropTableIfExists('music')
+}
