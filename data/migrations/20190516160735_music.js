@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
 
         tbl.string('songName', 255).notNullable()
         tbl.string('artistName', 255).notNullable()
-        tbl.string('songNotes', 528)
+        tbl.text('songNotes', 255).notNullable()
     })
 }
 

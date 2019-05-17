@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function find() {
-    return db('music').select('id', 'songName', 'artistName');
+    return db('music').select('id', 'songName', 'artistName', 'songNotes');
 }
 
 function findBy(filter) {
@@ -18,7 +18,7 @@ function findBy(filter) {
 }
 
 function findById(id) {
-    return db('music').where(id);
+    return db('song').where(id);
 }
 
 async function add(song) {
@@ -38,3 +38,4 @@ function findByArtist(artistName) {
         .where({ artistName })
         .first();
 }
+
