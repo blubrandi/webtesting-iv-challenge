@@ -22,34 +22,18 @@ server.get('/', (req, res) => {
 server.get('/songs', (req, res) => {
     Songs.find()
         .then(songs => {
-            res.json(songs);
+            res.status(200).json(songs)
         })
         .catch(err => res.send(err));
 });
 
 server.get('/songs/:id', (req, res) => {
-    const { id } = req.params.id
-    Songs.findById(id)
+    Songs.findById(req.params.id)
         .then(song => {
-            res.json(song);
+            res.status(200).json(song);
         })
         .catch(err => res.send(err));
 });
 
-server.get('/:songName', (req, res) => {
-    Songs.findBySongName(req.params.songName)
-        .then(songName => {
-            res.json(songName);
-        })
-        .catch(err => res.send(err));
-});
-
-server.get('/:artistName', (req, res) => {
-    Songs.findByArtist(req.params.artistName)
-        .then(artist => {
-            res.json(artist);
-        })
-        .catch(err => res.send(err));
-});
 
 module.exports = server;

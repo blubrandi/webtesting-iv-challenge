@@ -5,8 +5,6 @@ module.exports = {
     find,
     findBy,
     findById,
-    findBySongName,
-    findByArtist
 };
 
 function find() {
@@ -18,7 +16,9 @@ function findBy(filter) {
 }
 
 function findById(id) {
-    return db('song').where(id);
+    return db('music')
+        .where({ id })
+        .first();
 }
 
 async function add(song) {
