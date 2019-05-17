@@ -13,7 +13,7 @@ server.use(express.json());
 
 // sanity check route
 server.get('/', (req, res) => {
-    res.status(200).json({ message: 'This thing works!  OOOHRAH!' });
+    res.status(200).json({ message: 'This thing works!  OOOHRAH!' })
 });
 
 
@@ -24,15 +24,25 @@ server.get('/songs', (req, res) => {
         .then(songs => {
             res.status(200).json(songs)
         })
-        .catch(err => res.send(err));
-});
+        .catch(err => res.send(err))
+})
 
 server.get('/songs/:id', (req, res) => {
     Songs.findById(req.params.id)
         .then(song => {
-            res.status(200).json(song);
+            res.status(200).json(song)
         })
-        .catch(err => res.send(err));
+        .catch(err => res.send(err))
+})
+
+server.post('/songs', (req, res) => {
+    const { songName, artistName, songNotes } = req.body
+
+    Songs.add({ songName, artistName, songNotes }).then(song => {
+        res.status(201).json({ song })
+    }).catch(error => {
+        res.status(500).json(error)
+    })
 });
 
 
