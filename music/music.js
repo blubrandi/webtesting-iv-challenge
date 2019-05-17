@@ -2,6 +2,7 @@ const db = require('../data/dbConfig.js');
 
 module.exports = {
     add,
+    remove,
     find,
     findBy,
     findById,
@@ -27,15 +28,9 @@ async function add(song) {
     return findById(id);
 }
 
-function findBySongName(songName) {
+function remove(id) {
     return db('music')
-        .where({ songName })
-        .first();
-}
-
-function findByArtist(artistName) {
-    return db('music')
-        .where({ artistName })
-        .first();
+        .where('id', id)
+        .del();
 }
 

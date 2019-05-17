@@ -43,7 +43,19 @@ server.post('/songs', (req, res) => {
     }).catch(error => {
         res.status(500).json(error)
     })
-});
+})
+
+server.delete('/songs/:id', (req, res) => {
+    const id = req.params.id
+
+    Songs.remove(id)
+        .then(song => {
+            res.json({ message: 'Your song has been deleted' })
+        })
+        .catch(err => {
+            res.status(500).json({ error: err, message: 'There was a problem deleting your song' })
+        })
+})
 
 
 module.exports = server;
